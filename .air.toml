@@ -1,9 +1,45 @@
+# Config file for [Air](https://github.com/air-verse/air) in TOML format
 root = "."
+tmp_dir = "tmp"
 
 [build]
-  cmd = "go build -o ./tmp/main ."
-  bin = "./tmp/main"
-  include_ext = ["go", "templ"]
+# Just plain old shell command.
+cmd = "go build -o ./tmp/main ."
+# Binary file yields from `cmd`.
+bin = "tmp/main"
+# Customize binary, can setup environment variables when run your app.
+full_bin = "./tmp/main"
+# Add additional arguments when running binary.
+args_bin = []
+# Watch these filename extensions.
+include_ext = ["go", "tpl", "tmpl", "html", "css"]
+# Ignore these filename extensions or directories.
+exclude_dir = ["assets", "tmp", "vendor", "node_modules"]
+# Exclude specific regular expressions.
+exclude_regex = ["_test\\.go"]
+# Exclude unchanged files.
+exclude_unchanged = true
+# This log file is placed in your tmp_dir.
+log = "air.log"
+# Stop running old binary when build errors occur.
+stop_on_error = true
+# Send Interrupt signal before killing process
+send_interrupt = false
+# Delay after sending Interrupt signal
+kill_delay = 500 # ns
 
-[run]
-  watcher_debounce = 500
+[log]
+time = false
+main_only = false
+
+[color]
+main = "magenta"
+watcher = "cyan"
+build = "yellow"
+runner = "green"
+
+[misc]
+clean_on_exit = true
+
+[screen]
+clear_on_rebuild = true

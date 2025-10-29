@@ -1,1 +1,56 @@
-/tmp
+# -----------------------------------------------------------------------------
+# --- Go (Golang) ---
+# -----------------------------------------------------------------------------
+# Ignore compiled executables (platform-agnostic)
+/whiteboard
+*.exe
+*.exe~
+*.test
+*.out
+
+# -----------------------------------------------------------------------------
+# --- General / Secrets ---
+# -----------------------------------------------------------------------------
+.env
+.env.*
+!.env.example
+*.log
+logs/
+/tmp/
+
+# -----------------------------------------------------------------------------
+# --- Node.js / Web (JS, HTML, CSS, Tailwind) ---
+# -----------------------------------------------------------------------------
+/node_modules/
+/vendor/
+/dist/
+/build/
+/public/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+.npm/
+.eslintcache
+.stylelintcache
+.cache/
+.parcel-cache/
+.next/
+.nuxt/
+.svelte-kit/
+
+# -----------------------------------------------------------------------------
+# --- Editor / OS (Neovim, Arch Linux) ---
+# -----------------------------------------------------------------------------
+# Neovim swap files
+*.swp
+*.swo
+*~
+Session.vim
+*.local
+
+# macOS
+.DS_Store
+
+# Windows
+Thumbs.db
+desktop.ini
