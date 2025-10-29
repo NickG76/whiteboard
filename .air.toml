@@ -1,0 +1,9 @@
+root = "."
+
+[build]
+  cmd = "go build -o ./tmp/main ."
+  bin = "./tmp/main"
+  include_ext = ["go", "templ"]
+
+[run]
+  watcher_debounce = 500

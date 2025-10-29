@@ -1,0 +1,46 @@
+package views
+
+templ LobbyPage() {
+	@layout("Join a Canvas Room", "h-screen font-sans grid place-items-center bg-gray-900 text-gray-100") {
+		
+		<div class="text-center bg-gray-800 p-10 md:p-12 rounded-xl shadow-2xl">
+			<h1 class="text-3xl font-medium text-white">Collaborative Canvas</h1>
+			<p class="text-gray-400 -mt-2 mb-6">Enter a room name to join or create.</p>
+			<div>
+				<input
+					type="text"
+					id="roomName"
+					placeholder="e.g., 'design-team'"
+					autocomplete="off"
+					class="text-lg p-3 rounded-md border border-gray-600 bg-gray-700 text-gray-100 mr-2 focus:outline-none focus:ring-2 focus:ring-blue-500"
+				/>
+				<button
+					onclick="joinRoom()"
+					class="text-lg py-3 px-5 rounded-md bg-blue-600 text-white cursor-pointer transition-colors duration-200 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 focus:ring-offset-gray-800"
+				>
+					Join
+				</button>
+			</div>
+		</div>
+
+		<script>
+			function joinRoom() {
+				const roomNameInput = document.getElementById('roomName');
+				let roomName = roomNameInput.value.trim();
+				if (roomName) {
+					roomName = encodeURIComponent(roomName);
+					window.location.href = '/room/' + roomName;
+				} else {
+					roomNameInput.focus();
+				}
+			}
+
+			document.getElementById('roomName').addEventListener('keyup', function(event) {
+				if (event.key === 'Enter') {
+					event.preventDefault();
+					joinRoom();
+				}
+			});
+		</script>
+	}
+}
