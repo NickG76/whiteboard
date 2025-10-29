@@ -420,7 +420,6 @@ templ CanvasPage(roomID string) {
 					});
 
 					if (e.touches.length === 1) {
-						e.preventDefault();
 
 						if (currentTool === 'fill') {
 							const strokeId = Date.now();
@@ -447,7 +446,6 @@ templ CanvasPage(roomID string) {
 							redoHistory = [];
 						}
 					} else if (e.touches.length === 2) {
-						e.preventDefault();
 						isDrawing = false;
 						isTouchPanning = false;
 						lastPinchDist = getPinchDist(e);
@@ -456,7 +454,6 @@ templ CanvasPage(roomID string) {
 
 				function handleTouchMove(e) {
 					if (isDrawing && e.touches.length === 1 && (currentTool === 'draw' || currentTool === 'erase')) {
-						e.preventDefault();
 						const [newX, newY] = getCanvasCoords(e);
 						const color = (currentTool === 'erase') ? backgroundColor : currentColor;
 						const lineData = {
@@ -468,7 +465,6 @@ templ CanvasPage(roomID string) {
 						processDraw(lineData, true);
 						[lastX, lastY] = [newX, newY];
 					} else if (isTouchPanning && e.touches.length === 1 && currentTool === 'pan') {
-						e.preventDefault();
 						const panNow = getTouchMidpoint(e);
 						const deltaX = panNow.x - touchPanStart.x;
 						const deltaY = panNow.y - touchPanStart.y;
@@ -477,7 +473,6 @@ templ CanvasPage(roomID string) {
 						touchPanStart = panNow;
 						redrawCanvas();
 					} else if (e.touches.length === 2) {
-						e.preventDefault();
 						const newDist = getPinchDist(e);
 						const zoomDelta = newDist / lastPinchDist;
 						const midPoint = getTouchMidpoint(e);
